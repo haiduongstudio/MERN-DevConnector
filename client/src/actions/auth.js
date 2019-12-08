@@ -5,7 +5,9 @@ import {
   REGISTER_FAIL,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
-  USER_LOADER
+  USER_LOADER,
+  LOGOUT,
+  AUTH_ERROR
 } from './types';
 import setAuthToken from '../utils/setAuthToken';
 
@@ -22,7 +24,9 @@ export const loadUser = payload => async dispatch => {
       type: USER_LOADER,
       payload: res.data
     });
-  } catch (err) {}
+  } catch (err) {
+    dispatch({ type: AUTH_ERROR });
+  }
 };
 
 // Register User
@@ -81,4 +85,9 @@ export const login = (email, password) => async dispatch => {
     }
     dispatch({ type: LOGIN_FAIL });
   }
+};
+
+// Logout / Clear Profile
+export const logout = () => dispatch => {
+  dispatch({ type: LOGOUT });
 };
