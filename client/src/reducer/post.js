@@ -12,7 +12,7 @@ export default (state = initialState, { type, payload }) => {
     case GET_POSTS:
       return {
         ...state,
-        ...payload,
+        posts: payload,
         loading: false
       };
     case POST_ERROR:
